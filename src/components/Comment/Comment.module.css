@@ -1,0 +1,33 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #1a1a1a;
+
+  padding: .5rem;
+  border-radius: .5rem;
+
+  h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+}
+
+.div__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+}
+
+.comment__votes {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: white;
+    font-size: 0.75rem;
+}

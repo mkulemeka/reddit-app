@@ -1,24 +1,30 @@
 import { fetchSubreddits, selectSubreddits } from "./subredditsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Link } from "react-router-dom";
+import Subreddit from "../../components/Subreddit/Subreddit";
+import { selectSort } from "../Sort/sortSlice";
 import { useEffect } from "react";
 
 const SubReddits = () => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectSubreddits);
+  const sort = useSelector(selectSort);
 
   useEffect(() => {
     dispatch(fetchSubreddits());
   }, [dispatch]);
 
   if (!subreddits || subreddits.length === 0) return <div>No subreddits found</div>;
-  console.log(subreddits);
+
   return (
-    <div>
-      {subreddits.map((subreddit) => (
-        <div key={subreddit.id}>{subreddit.display_name}</div>
+    <section>
+      {subreddits.map(({ id, display_name, banner_img }) => (
+        <Link key={id} to={`/${display_name}`}>
+          <Subreddit display_name={display_name} banner_img={banner_img} />
+        </Link>
       ))}
-    </div>
+    </section>
   );
 };
 

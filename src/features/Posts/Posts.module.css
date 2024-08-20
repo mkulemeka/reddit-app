@@ -1,7 +1,7 @@
-.section__comments {
+.section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 
-  margin-top: 1rem;
+  padding: 1rem 0;
 }

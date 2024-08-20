@@ -1,0 +1,5 @@
+.aside {
+  position: absolute;
+  top: 5rem;
+  z-index: 2;
+}
