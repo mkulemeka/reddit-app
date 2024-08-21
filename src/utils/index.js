@@ -21,3 +21,13 @@ export const decodeUrl = (url, fallbackUrl) => {
     return fallbackUrl === "self" || fallbackUrl === "default" ? null : fallbackUrl;
   else return url?.replace(/&amp;/g, "&");
 };
+
+const sortPosts = (posts, sortby) => {
+  return posts.slice().sort((a, b) => {
+    if (sortby === "upvotes") return b.ups - a.ups;
+    else if (sortby === "comments") return b.num_comments - a.num_comments;
+    else return new Date(b.created_utc) - new Date(a.created_utc);
+  });
+};
+
+
