@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+
+  word-wrap: break-word;
 }
 
 .post__figure {
@@ -39,4 +41,14 @@
     margin-left: auto;
     color: purple;
   }
+}
+
+.selfText {
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 8rem;
 }

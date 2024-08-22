@@ -16,7 +16,7 @@ const Post = ({
   return (
     <article className={styles.post_article}>
       <h2>{title}</h2>
-      <p>{selftext}</p>
+      <p  className={styles.selfText}>{selftext}</p>
       {postImage && (
         <figure className={styles.post__figure}>
           <img loading="lazy" src={postImage} alt={title} />

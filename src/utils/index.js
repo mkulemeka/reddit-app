@@ -22,12 +22,36 @@ export const decodeUrl = (url, fallbackUrl) => {
   else return url?.replace(/&amp;/g, "&");
 };
 
-const sortPosts = (posts, sortby) => {
-  return posts.slice().sort((a, b) => {
-    if (sortby === "upvotes") return b.ups - a.ups;
-    else if (sortby === "comments") return b.num_comments - a.num_comments;
-    else return new Date(b.created_utc) - new Date(a.created_utc);
-  });
+export const sortPosts = (posts, sortBy) => {
+  switch (sortBy) {
+    case "upvotes":
+      return posts.sort((a, b) => b.ups - a.ups);
+    case "date":
+      return posts.sort((a, b) => b.created_utc - a.created_utc);
+    case "comments":
+      return posts.sort((a, b) => b.num_comments - a.num_comments);
+    default:
+      return posts;
+  }
 };
 
+export const filterPosts = (posts, filterBy = "all") => {
+  switch (filterBy) {
+    case "new":
+      return posts.filter((post) => post.created_utc > Date.now() / 1000 - 86400);
+    case "hot":
+      return posts.filter((post) => post.ups > 5000);
+    case "top":
+      return posts.filter((post) => post.num_comments > 500);
+    default:
+      return posts;
+  }
+};
 
+export const searchPosts = (posts, searchTerm) => {
+  if (!searchTerm) return posts;
+
+  return posts.filter((post) =>
+    post.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+};

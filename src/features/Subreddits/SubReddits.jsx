@@ -3,13 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import Subreddit from "../../components/Subreddit/Subreddit";
-import { selectSort } from "../Sort/sortSlice";
 import { useEffect } from "react";
 
 const SubReddits = () => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectSubreddits);
-  const sort = useSelector(selectSort);
 
   useEffect(() => {
     dispatch(fetchSubreddits());

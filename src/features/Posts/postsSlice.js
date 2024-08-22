@@ -1,10 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  filterPosts as filter,
+  searchPosts as search,
+  sortPosts as sort,
+} from "../../utils";
 
 import rootURL from "../../api/reddit";
+import { selectSearchTerm } from "../Search/searchSlice";
 
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPosts",
-  async (subreddit = "Home", { rejectWithValue }) => {
+  async (subreddit, { rejectWithValue }) => {
     try {
       // const response = await fetch(`${subreddit}.json`);
       const response = await fetch(`${rootURL}/r/${subreddit}.json`);
@@ -23,8 +29,17 @@ export const postsSlice = createSlice({
   name: "posts",
   initialState: {
     posts: [],
+    filteredPosts: [],
     isLoadingPosts: false,
     hasPostError: false,
+  },
+  reducers: {
+    sortPosts: (state, action) => {
+      state.filteredPosts = sort(state.posts, action.payload);
+    },
+    filterPosts: (state, action) => {
+      state.filteredPosts = filter(state.posts, action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -35,6 +50,7 @@ export const postsSlice = createSlice({
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.isLoadingPosts = false;
         state.posts = action.payload;
+        state.filteredPosts = action.payload;
       })
       .addCase(fetchPosts.rejected, (state) => {
         state.isLoadingPosts = false;
@@ -43,7 +59,14 @@ export const postsSlice = createSlice({
   },
 });
 
-export const selectPosts = (state) => state.posts.posts;
+export const { sortPosts, filterPosts, searchPosts } = postsSlice.actions;
+export const selectPosts = (state) => {
+  const searchTerm = selectSearchTerm(state);
+  const filteredPosts = state.posts.filteredPosts;
+
+  if (searchTerm) return search(filteredPosts, searchTerm);
+  return filteredPosts;
+}
 export const selectPost = (postId) => (state) =>
   state.posts.posts.find((post) => post.id === postId);
 export const selectIsLoadingPosts = (state) => state.posts.isLoadingPosts;

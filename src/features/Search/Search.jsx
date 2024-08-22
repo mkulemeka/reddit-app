@@ -9,7 +9,6 @@ const Search = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (!searchInput.current.value) return;
     dispatch(setSearchTerm(searchInput.current.value));
   };
 

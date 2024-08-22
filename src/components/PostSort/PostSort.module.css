@@ -1,0 +1,43 @@
+.sortDropDown {
+  position: relative;
+}
+
+.sortButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    font-size: 1.25rem;
+  }
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 1.5rem;
+  right: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 5.5rem;
+
+  padding: 0.5rem;
+  background-color: rgb(44, 44, 44);
+  border-radius: 0.5rem;
+  z-index: 2;
+  transition: .3s ease-in-out;
+}
+
+.button {
+  color: var(--white);
+  font-weight: var(--semi-bold);
+  text-align: left;
+
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  outline: none;
+  cursor: pointer;
+}
