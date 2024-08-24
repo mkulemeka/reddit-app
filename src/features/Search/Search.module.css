@@ -1,6 +1,10 @@
 .form {
   max-width: 70%;
   position: relative;
+
+  @media (min-width: 768px) {
+    max-width: 65%;
+  }
 }
 
 .input {
@@ -15,6 +19,13 @@
   border-radius: 0.5rem;
   border: 1px solid transparent;
   outline: transparent;
+
+  @media (min-width: 768px) {
+    height: 2.25rem;
+    font-size: 1.25rem;
+    padding: 0 1rem;
+    caret-color: var(--turquiouse);
+  }
 }
 
 .search__button {
@@ -33,4 +44,10 @@
   background-color: transparent;
   border: none;
   outline: transparent;
+  cursor: pointer;
+
+  @media (min-width: 768px) {
+    right: 2%;
+    font-size: 1.5rem;
+  }
 }

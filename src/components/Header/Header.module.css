@@ -4,6 +4,38 @@
   align-items: center;
   padding: 1rem 0;
   border-bottom: 1px solid #e0e0e0;
+
+  h1 {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    position: fixed;
+    top: 0;
+    left: 3rem;
+    right: 3rem;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+
+    z-index: 10;
+    background-color: var(--black);
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      h1 {
+        display: block;
+      }
+
+      span {
+        color: gray;
+      }
+    }
+  }
 }
 
 .header__logo {
@@ -16,4 +48,3 @@
   color: var(--turquiouse);
   font-size: 2rem;
 }
-

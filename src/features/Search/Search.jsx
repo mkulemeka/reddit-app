@@ -18,7 +18,7 @@ const Search = () => {
         className={styles.input}
         ref={searchInput}
         type="text"
-        placeholder="Search"
+        placeholder="Search a post..."
       />
       <button className={styles.search__button} type="submit">
         <CiSearch />

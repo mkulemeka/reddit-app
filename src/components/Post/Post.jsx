@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { TbArrowBigUpLines } from "react-icons/tb";
 import { decodeUrl } from "../../utils";
 import styles from "./Post.module.css";
+
 const Post = ({
   title,
   author,
@@ -18,8 +19,9 @@ const Post = ({
       <h2>{title}</h2>
       <p  className={styles.selfText}>{selftext}</p>
       {postImage && (
-        <figure className={styles.post__figure}>
+        <figure className={styles.post__figure} >
           <img loading="lazy" src={postImage} alt={title} />
+          <div ></div>
         </figure>
       )}
       <div className={styles.post__stats}>

@@ -6,7 +6,6 @@ import {
   selectHasPostError,
   selectIsLoadingPosts,
   selectPosts,
-  sortPosts,
 } from "./postsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,7 +23,13 @@ const Posts = () => {
     dispatch(fetchPosts(subreddit));
   }, [dispatch, subreddit]);
 
-  if (isLoadingPosts) return <Loading />;
+  if (isLoadingPosts)
+    return (
+      <section className={styles.section__loader}>
+        <Loading />
+      </section>
+    );
+    
   if (hasPostError) return <div>Something went wrong</div>;
 
   const handleFilter = ({ target }) => {
@@ -32,15 +37,19 @@ const Posts = () => {
   };
 
   return (
-    <section className={styles.section__posts}>
+    <section className={styles.section__container}>
       <section className={styles.section__filterSort}>
         <PostSort />
         <PostFilter handleFilter={handleFilter} />
       </section>
-      <section>
+      <section className={styles.section__posts}>
         {posts.length > 0 ? (
           posts.map((post) => (
-            <Link key={post.id} to={`/${post.subreddit}/${post.id}`}>
+            <Link
+              key={post.id}
+              to={`/${post.subreddit}/${post.id}`}
+              className={styles.post__link}
+            >
               <Post {...post} />
             </Link>
           ))

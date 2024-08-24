@@ -4,11 +4,19 @@
   gap: 0.25rem;
 
   word-wrap: break-word;
+
+  @media (min-width: 768px) {
+    gap: 0.5rem;
+  }
 }
 
 .post__figure {
+  position: relative;
   width: 100%;
+  height: 100%;
+
   border-radius: 0.5rem;
+  overflow: hidden;
 
   img {
     width: 100%;
@@ -16,6 +24,29 @@
 
     border-radius: 0.5rem;
     object-fit: cover;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    max-height: 30rem;
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(50px); /* Adjust the blur intensity */
+    background-color: rgba(74, 74, 74, 0.3);
+    z-index: 0;
+
+    img {
+      width: auto;
+      min-height: 15rem;
+      max-height: 25rem;
+      object-fit: contain;
+    }
   }
 }
 

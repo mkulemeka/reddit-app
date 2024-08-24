@@ -16,6 +16,7 @@ const PostDetailsPage = () => {
   return (
     <section className={styles.section}>
       <h2>{post.title}</h2>
+      {post.selftext && <p>{post.selftext}</p>}
       {postThumbnail && (
         <figure className={styles.post_image}>
           <img loading="lazy" src={postThumbnail} alt={post.title} />
