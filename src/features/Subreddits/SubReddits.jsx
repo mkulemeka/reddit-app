@@ -1,19 +1,23 @@
-import { fetchSubreddits, selectSubreddits } from "./subredditsSlice";
+import { fetchSubreddits, selectHasSubredditError, selectIsLoadingSubreddits, selectSubreddits } from "./subredditsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 import Subreddit from "../../components/Subreddit/Subreddit";
 import { useEffect } from "react";
 
 const SubReddits = () => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectSubreddits);
+  const isLoadingSubreddits = useSelector(selectIsLoadingSubreddits);
+  const hasSubredditError = useSelector(selectHasSubredditError);
 
   useEffect(() => {
     dispatch(fetchSubreddits());
   }, [dispatch]);
 
-  if (!subreddits || subreddits.length === 0) return <div>No subreddits found</div>;
+  if (isLoadingSubreddits) return <Loading />;
+  if (hasSubredditError) return <div>Failed to load subreddits</div>;
 
   return (
     <section>
